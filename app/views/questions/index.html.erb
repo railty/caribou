@@ -1,0 +1,9 @@
+<h1><%= @exam.name %></h1>
+
+<% @questions.each do |question| %>
+  <%= link_to 'Edit', edit_question_path(question) %>
+	<div>
+		<%= question.body.html_safe %>
+	</div>
+<% end %>
+

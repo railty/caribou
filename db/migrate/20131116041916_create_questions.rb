@@ -1,0 +1,12 @@
+class CreateQuestions < ActiveRecord::Migration
+  def change
+    create_table :questions do |t|
+			t.integer :exam_id
+			t.integer :num
+			t.text :body
+			t.integer :score
+
+      t.timestamps
+    end
+  end
+end

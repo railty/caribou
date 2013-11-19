@@ -1,0 +1,11 @@
+wget --directory-prefix=caribou/cgi-bin/js http://www.brocku.ca/caribou/cgi-bin/js/jquery-1.9.1.min.js
+wget --directory-prefix=caribou/cgi-bin/js/jquery-ui-1.10.3/ui/minified http://www.brocku.ca/caribou/cgi-bin/js/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js
+wget --directory-prefix=caribou/cgi-bin/js http://www.brocku.ca/caribou/cgi-bin/js/county.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/lights.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/dots.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/skyscrapers.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/bomb.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/nim.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/mastermind.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/hanoi.min.js
+wget --directory-prefix=caribou/interactive http://www.brocku.ca/caribou/interactive/sudoku.min.js
