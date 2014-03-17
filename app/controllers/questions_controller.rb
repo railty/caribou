@@ -3,9 +3,25 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   # GET /questions.json
+  def subjects
+		@subjects = []
+		questions = Question.select(:subject).distinct
+		questions.each do |q|
+			@subjects << q.subject
+		end
+  end
+	
+  # GET /questions
+  # GET /questions.json
   def index
-		@exam = Exam.find(params[:exam_id])
-		@questions = @exam.questions
+		if params[:exam_id] != nil then
+			@exam = Exam.find(params[:exam_id]) 
+			@questions = @exam.questions
+		elsif params[:subject] != nil then
+			@questions = Question.where("subject = ?", params[:subject])
+		else
+			@questions = Question.all.limit(10)
+		end
   end
 
   # GET /questions/1

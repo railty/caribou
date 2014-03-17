@@ -1,10 +1,15 @@
 Caribou::Application.routes.draw do
-	resources :questions
-
+	resources :questions do
+		collection do
+			get 'subjects'
+		end
+	end
+	
 	resources :exams do
 		resources :questions
 	end
 	root 'exams#index'
+	get ':subject/questions', to: 'questions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

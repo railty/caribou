@@ -1,9 +1,9 @@
-<h1><%= @exam.name %></h1>
+<h1><%= @exam==nil ? "All Questions" : @exam.name %></h1>
 
 <% @questions.each do |question| %>
   <%= link_to 'Edit', edit_question_path(question) %>
-	<div>
-		<%= question.body.html_safe %>
-	</div>
+	<h2><%= question.subject %> | <%= question.num %> | <%= question.score %></h2>
+	<div><%= question.question.html_safe %></div>
+	<div><%= question.answers.html_safe %></div>
 <% end %>
 

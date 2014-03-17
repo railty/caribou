@@ -72,11 +72,54 @@ def dl_js(fname)
 	end
 end
 
-Dir["data/*.html"].each do |html|
-	dl_js(html)
+def dl_category(fname)
+	exam_name = fname.gsub('.html', '').gsub(/^data\//, '')
+	exam = Exam.where("name = ?", exam_name).first
+	
+	doc = Nokogiri::HTML(File.read(fname))
+	doc.xpath("//h3").each do |h3|
+		txt = h3.text
+		if txt =~ /Question (\d+) of (\d+) \((\d+) points\)/ then
+			num = $1.to_i	#question num of total
+			score = $3.to_i #x points
+			body = h3.to_html
+
+			elem = h3
+			loop do
+				elem = elem.next
+				break if elem == nil or elem.node_name == 'h3'
+				body = body+elem.to_html
+				break if elem.node_name == 'ol'
+			end
+
+
+			if elem!=nil and elem.next !=nil then
+				puts "=========#{num}"
+				puts elem.next.to_html
+				puts "-----------"
+				puts elem.to_html
+			end
+
+		end
+	end
 end
-$jss.uniq!
-$jss.each do |js|
-	prefix = js.gsub(/([^\/]*)$/, '').gsub(/\/$/, '').gsub(/^\//, '')
-	puts "wget --directory-prefix=#{prefix} http://www.brocku.ca#{js}"
+
+
+def dl_categories
+	Dir["data/*.html"].each do |html|
+		dl_category(html)
+	end
 end
+
+def dl_jss
+	Dir["data/*.html"].each do |html|
+		dl_js(html)
+	end
+	$jss.uniq!
+	$jss.each do |js|
+		prefix = js.gsub(/([^\/]*)$/, '').gsub(/\/$/, '').gsub(/^\//, '')
+		puts "wget --directory-prefix=#{prefix} http://www.brocku.ca#{js}"
+	end
+end
+
+dl_categories

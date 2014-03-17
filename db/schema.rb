@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20131116175010) do
   create_table "questions", force: true do |t|
     t.integer  "exam_id"
     t.integer  "num"
-    t.text     "body"
     t.integer  "score"
+    t.string   "subject"
+    t.string   "question"
+    t.string   "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

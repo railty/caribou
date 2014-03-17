@@ -3,9 +3,10 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
 			t.integer :exam_id
 			t.integer :num
-			t.text :body
 			t.integer :score
-
+			t.string :subject
+			t.string :question
+			t.string :answers
       t.timestamps
     end
   end
