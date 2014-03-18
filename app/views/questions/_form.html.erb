@@ -11,8 +11,12 @@
     </div>
   <% end %>
 
+
   <div class="actions">
-    <%= f.text_area :body, :cols=>80, :rows=>25 %>
+    <div><%= @question.question.html_safe %></div>
+    <%= f.text_area :question, :cols=>80, :rows=>10 %>
+    <div><%= @question.answers.html_safe %></div>
+    <%= f.text_area :answers, :cols=>80, :rows=>10 %>
     <%= f.submit %>
   </div>
 <% end %>
