@@ -1,0 +1,8 @@
+div#answers 
+{
+border:1px solid #a1a1a1;
+padding:10px 10px; 
+background:lightgreen;
+width:300px;
+border-radius:5px;
+}
