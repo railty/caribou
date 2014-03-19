@@ -1,0 +1,8 @@
+div#question
+{
+	border:1px solid darkgreen;
+	padding:5px; 
+	background:lightgreen;
+	width:600px;
+	border-radius:5px;
+}

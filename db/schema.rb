@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116175010) do
+ActiveRecord::Schema.define(version: 20140319123139) do
 
   create_table "exams", force: true do |t|
     t.string   "name"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20131116175010) do
     t.integer  "exam_id"
     t.integer  "num"
     t.integer  "score"
+    t.string   "subject"
+    t.string   "question"
+    t.string   "answers"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "templates", force: true do |t|
+    t.integer  "score"
+    t.string   "grade"
     t.string   "subject"
     t.string   "question"
     t.string   "answers"

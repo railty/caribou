@@ -1,5 +1,5 @@
 <% @questions.each do |question| %>
-	<h2><%= question.subject %> | <%= question.score %> | <%= question.exam.name %> | <%= question.num %> |   <%= link_to 'Edit', edit_question_path(question) %></h2>
+	<h2><%= question.subject %> | <%= question.score %> | <%= question.exam.name %> | <%= question.num %> |   <%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %></h2>
 	<div><%= question.question.html_safe %></div>
 	<div><%= question.answers.html_safe %></div>
 <% end %>

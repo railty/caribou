@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require Markdown.Converter.js
+//= require Markdown.Converter.Form.js
 //= require angular.min
 //= require_tree .

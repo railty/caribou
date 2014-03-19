@@ -1,4 +1,10 @@
 Caribou::Application.routes.draw do
+  resources :templates do
+		collection do
+			get 'clear'
+		end
+	end
+
 	resources :questions do
 		collection do
 			get 'subjects'
