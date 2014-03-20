@@ -83,32 +83,47 @@ def import_exam(filename)
 end
 
 def import_kids_names
-	doc = Nokogiri::HTML(File.read('data/babynames1.html'))
+	male=[]
+	female = []
+  doc = Nokogiri::HTML(File.read('data/babynames1.html'))
   doc.xpath("//h3").each do |h3|
     if h3.text =~ /Top Names of (\d+)\-(\d+)/ then
-      puts "111#{h3.text}"
     elsif h3.text =~ /Top Names of (\d+)/ then
-      puts "#{h3.text}"
+      #puts "#{h3.text}"
       tbl = h3.next.next
-      (1 .. tbl.xpath(".//tr[2]/td").length).each do |i|
-        if i % 2==0 then
-          puts "female"
-          puts tbl.xpath(".//tr[2]/td[#{i}]").text
+      n = tbl.xpath(".//tr[2]/td").length
+      (1 .. n).each do |i|
+	names = nil
+          tbl.xpath(".//tr[2]/td[#{i}]").each do |td|
+		str = td.text.gsub("\n", ' ').gsub(/\s+/, ',')
+		names=str.split(',')
+	end
+        if i > n/2 then
+          female =female+names
         else
-          puts "male"
-          puts tbl.xpath(".//tr[2]/td[#{i}]").text
-        end
+          male = male+names
+	end
       end
     end
-      
   end
-  #doc.xpath("//table/tr/td[1]").each do |td|
-   # puts td
-  #end
-#  doc.xpath("//h4[text()='Male']").each do |h4|
- #   debugger
-  #  puts h4.next.text
-  #end
- end
+  
+  female.uniq!
+  male.uniq!
+  str = ""
+  p
+  male.each do |n|
+	  str = str+n+"," if n!=""
+  end
+  str.chop!
+  str = "boy_name: ["+str+"]"
+  puts str
+  str = ""
+  female.each do |n|
+	  str = str+n+"," if n!=""
+  end
+  str.chop!
+  str = "girl_name: ["+str+"]"
+  puts str
+end
 
 import_kids_names
