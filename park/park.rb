@@ -13,7 +13,8 @@ class Park
     Capybara.app_host = home_url
   end
 
-  def test
+  def dl_info
+    str = ""
     visit('/')
 		click_link('Click here for English.') if page.has_link?('Click here for English.')
 		
@@ -33,19 +34,28 @@ class Park
 		table.all(:xpath, ".//tr").each do |tr|
 			state = tr.find(:xpath, ".//td[1]/img")['title']
 			site = tr.find(:xpath, ".//td[2]").text
-			puts "#{site}--->#{state}"
+			str = str + "#{site}--->#{state}\n"
 		end
 
 		#save_page
 		#page.save_screenshot('2.png')    
+    return str	
 	end
 
 end
 
 def dl
 	spider = Park.new('https://reservations.ontarioparks.com/', :capybara_selenium_remote_phantomjs)
-	spider.test
+	str = spider.dl_info
+	f = File.open("data.txt", "a+")
+	f.puts Time.now
+	f.puts str
+	f.close
 end
 
-#phantomjs --webdriver=5555 --cookies-file=cookie.jar
+system 'phantomjs --webdriver=5555 --webdriver-logfile=log.txt &'
+pid = $?
+sleep 1
+puts "========================="
 dl
+`kill $(ps -A|grep phantomjs|awk '{print $1}')`
