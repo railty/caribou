@@ -22,6 +22,12 @@ class Park
 		find(:xpath, "//select[@id='selArrDay']").select '2nd'		
 		find(:xpath, "//select[@id='selNumNights']").select '2'
 		find(:xpath, "//select[@id='selLocation']").select 'Pinery'
+
+		while has_no_selector?(:xpath, "//select[@id='selMap']/option[text()='Riverside']") do
+			puts "waiting"
+			sleep 100
+		end
+
 		find(:xpath, "//select[@id='selMap']").select 'Riverside'
 		find(:xpath, "//select[@id='selEquipment']").select 'Single Tent'
 		find(:xpath, "//select[@id='selPartySize']").select '4'
@@ -37,8 +43,8 @@ class Park
 			str = str + "#{site}--->#{state}\n"
 		end
 
-		#save_page
-		#page.save_screenshot('2.png')    
+#		save_page
+#		page.save_screenshot('2.png')    
     return str	
 	end
 
@@ -53,7 +59,7 @@ def dl
 	f.close
 end
 
-system 'phantomjs --webdriver=5555 --webdriver-logfile=log.txt &'
+system 'phantomjs --webdriver=5555 --webdriver-logfile=log.txt >log.txt &'
 pid = $?
 sleep 1
 puts "========================="
