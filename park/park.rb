@@ -1,3 +1,4 @@
+require 'mail'
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require
@@ -51,12 +52,29 @@ class Park
 end
 
 def dl
+options = { :address              => "smtp.gmail.com",
+            :port                 => 587,
+            :domain               => 'orientalfoods.ca',
+            :user_name            => 'automan@orientalfoods.ca',
+            :password             => '3pokemon',
+            :authentication       => 'plain',
+            :enable_starttls_auto => true  }
+
 	spider = Park.new('https://reservations.ontarioparks.com/', :capybara_selenium_remote_phantomjs)
 	str = spider.dl_info
 	f = File.open("data.txt", "a+")
 	f.puts Time.now
 	f.puts str
 	f.close
+
+Mail.deliver do
+	delivery_method :smtp, options
+       to 'zxning@gmail.com'
+     from 'shawn.ning@list4d.com'
+  subject 'testing sendmail'
+     body str
+end
+
 end
 
 system 'phantomjs --webdriver=5555 --webdriver-logfile=log.txt >log.txt &'
@@ -65,3 +83,9 @@ sleep 1
 puts "========================="
 dl
 `kill $(ps -A|grep phantomjs|awk '{print $1}')`
+
+
+
+
+
+
