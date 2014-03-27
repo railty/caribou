@@ -1,0 +1,8 @@
+en:
+  faker:
+    name:
+      boy_name: [Jacob,Mason,Ethan,Noah,William,Liam,Jayden,Michael,Alexander,Aiden,Daniel,Anthony,Joshua,Caden,Jackson,Jack,Logan,Matthew,Christopher,Andrew,Joseph,Ryan,David,Nicholas,Tyler,James,John,Jonathan,Nathan,Samuel,Christian,Dylan,Benjamin,Brandon,Gabriel,Zachary,Jose,Justin]
+      girl_name: [Sophia,Emma,Isabella,Olivia,Ava,Emily,Abigail,Mia,Madison,Elizabeth,Chloe,Madeline,Addison,Hailey,Lily,Hannah,Samantha,Ashley,Alexis,Grace,Sarah,Alyssa,Natalie,Brianna,Lauren,Ella,Anna,Taylor,Kayla,Jessica,Victoria,Jasmine,Sydney,Rachel,Morgan,Megan]
+      kid_name:
+        - "#{Name.boy_name}"
+        - "#{Name.girl_name}"

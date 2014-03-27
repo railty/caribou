@@ -19,7 +19,7 @@ class TemplatesController < ApplicationController
   # GET /templates/1
   # GET /templates/1.json
   def show
-		name = Faker::Name.name
+		name = Faker::Name.kid_name
 		@template.question = ERB.new(@template.question).result(binding)
   end
 
