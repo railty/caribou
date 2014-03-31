@@ -1,5 +1,7 @@
 class TemplatesController < ApplicationController
-  before_action :set_template, only: [:show, :update, :destroy]
+	helper TemplatesHelper
+	
+  before_action :set_template, only: [:show, :update, :destroy, :edit]
 	
   # GET /templates
   # GET /templates.json
@@ -19,8 +21,12 @@ class TemplatesController < ApplicationController
   # GET /templates/1
   # GET /templates/1.json
   def show
-		name = Faker::Name.kid_name
-		@template.question = ERB.new(@template.question).result(binding)
+		#name = Faker::Name.kid_name
+		#begin
+			@md = ERB.new(@template.question).result(binding)
+		#rescue
+			#@md
+		#end
   end
 
   # GET /templates/new
