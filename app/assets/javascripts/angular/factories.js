@@ -7,7 +7,8 @@ angular.module('templateApp.factories', [])
     return $resource('/templates/:id', {
       id: '@id'
     }, {
-      update: {method:'PUT'}
+      update: {method:'PUT'},
+			check: {method:'GET', url:'/templates/check/:id', params:{xyz:123}}
     });
   }
 ]);

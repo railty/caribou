@@ -22,11 +22,15 @@ class QuestionsController < ApplicationController
 		else
 			@questions = Question.all.limit(10)
 		end
+		@questions.each do |q|
+			q.question = q.render
+		end
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+		@html = ERB.new(self.question).result(binding)
   end
 
   # GET /questions/new

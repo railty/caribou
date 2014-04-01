@@ -1,6 +1,16 @@
+<p id="notice"><%= notice %></p>
+
 <% @questions.each do |question| %>
-	<h2><%= question.subject %> | <%= question.score %> | <%= question.exam.name %> | <%= question.num %> |   <%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %></h2>
-	<div><%= question.question.html_safe %></div>
-	<div><%= question.answers.html_safe %></div>
+	<h2><%= question.subject %> | <%= question.score %> | <%= question.exam.name %> | <%= question.num %> |   <%= link_to 'Edit', edit_question_path(question), 'data-no-turbolink' => true %> | <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></h2>
+	<div class="question"><%= question.question.html_safe %></div>
 <% end %>
 
+<script>
+$(document).ready(function(){
+
+	$(".question").each(function(index ) {
+		$(this).html(Markdown_Converter.makeHtml($(this).html()));
+	});
+
+});
+</script>

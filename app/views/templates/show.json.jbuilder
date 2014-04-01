@@ -1,2 +1,2 @@
 json.extract! @template, :id, :question
-json.set! :md, @md
+json.set! :md, @template.render

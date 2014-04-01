@@ -3,6 +3,9 @@ Caribou::Application.routes.draw do
 		collection do
 			get 'clear'
 		end
+		member do
+			get 'append'
+		end
 	end
 
 	resources :questions do
@@ -13,7 +16,11 @@ Caribou::Application.routes.draw do
 	
 	resources :exams do
 		resources :questions
+		member do
+			get 'set_active'
+		end
 	end
+	
 	root 'exams#index'
 	get ':subject/questions', to: 'questions#index'
 

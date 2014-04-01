@@ -40,5 +40,9 @@ angular.module('templateApp.controllers', [])
 		$scope.status = msg;
 	};
 	
+	$scope.check = function(){
+		console.log($('input[name=answers]:checked', 'ol').val());
+		$scope.template.$check({});
+	};
 }]);
 

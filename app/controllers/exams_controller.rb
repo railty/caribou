@@ -1,10 +1,10 @@
 class ExamsController < ApplicationController
-  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+  before_action :set_exam, only: [:show, :edit, :update, :destroy, :set_active]
 
   # GET /exams
   # GET /exams.json
   def index
-    @exams = Exam.all
+    @exams = Exam.all.order("created_at desc")
   end
 
   # GET /exams/1
@@ -60,15 +60,22 @@ class ExamsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+	
+  def set_active
+		respond_to do |format|
+			format.js   {}
+		end
+	end
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exam
       @exam = Exam.find(params[:id])
+			session[:current_exam] = @exam
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params[:exam]
+      params[:exam].permit(:name, :grade)
     end
 end

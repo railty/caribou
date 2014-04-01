@@ -3,10 +3,12 @@
 <div ng-app="templateApp">
 	<div ng-controller="templateCtrl" ng-init="init(<%=@template.id%>)">
 		<div id='question' ng-bind-html="template.md | toHtml "></div>
-		<label>{{status}}</label>
+		<button id='submit' ng-click='check();'>Check</button>
+		<br/><label>{{status}}</label>
 	</div>
 </div>
 
 
+<%= link_to 'Append', append_template_path(@template), :remote=>true %> |
 <%= link_to 'Edit', edit_template_path(@template), 'data-no-turbolink' => true %> |
 <%= link_to 'Back', templates_path %>

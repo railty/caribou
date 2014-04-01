@@ -1,7 +1,7 @@
 <div ng-app="templateApp">
 	<div ng-controller="templateCtrl" ng-init="init(<%=@id%>)">
-		<div id='question' ng-bind-html="template.question | toHtml "></div>
-		<textarea ng-model='template.question' cols=80 rows=10></textarea>
+		<div id='question' ng-bind-html="template.md | toHtml "></div>
+		<textarea ng-model='template.question' cols=80 rows=20></textarea>
 		<br/>
 		<button ng-click="save()">Save</button>
 		<br/>
