@@ -74,7 +74,7 @@ class TemplatesController < ApplicationController
   end
 	
   def append
-		exam = session[:current_exam]
+		exam = Exam.find(session[:current_exam])
 		@template.append(exam)
 		respond_to do |format|
 			format.js   {}

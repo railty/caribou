@@ -23,8 +23,8 @@ def create_question(exam_name, subject, num, score, question, answers)
 	q.num = num
 	q.score = score
 	q.subject = subject
-	q.question = question
-	q.answers = answers
+	q.question = question+answers
+	#q.answers = answers
 	q.save
 	puts "create #{num} for #{exam_name}"
 end
@@ -86,6 +86,15 @@ def import_exams
 	Dir["data/*.html"].each do |html|
 		import_exam(html)
 	end
+	
+	Question.all.each do |q|
+		if q.question =~ /\<script/ then
+			q.material = 'game'
+			q.save
+			puts q.num
+		end
+	end
+	
 end
 
 import_exams

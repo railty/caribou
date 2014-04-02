@@ -7,6 +7,8 @@ class CreateQuestions < ActiveRecord::Migration
 			t.string :subject
 			t.string :question
 			t.string :answers
+			t.string :answer
+			t.string :material, :default=>'text'	#text, game, etc
       t.timestamps
     end
   end

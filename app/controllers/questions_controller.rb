@@ -14,23 +14,22 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
+		material = 'text'
+		material = params[:material]  if params[:material] != nil
+		
 		if params[:exam_id] != nil then
 			@exam = Exam.find(params[:exam_id]) 
-			@questions = @exam.questions
+			@questions = @exam.questions.where("material = ?", material)
 		elsif params[:subject] != nil then
-			@questions = Question.where("subject = ?", params[:subject])
+			@questions = Question.where("subject = ? and material = ?", params[:subject], material)
 		else
-			@questions = Question.all.limit(10)
-		end
-		@questions.each do |q|
-			q.question = q.render
+			@questions = Question.all.limit(10).where("material = ?", material)
 		end
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
-		@html = ERB.new(self.question).result(binding)
   end
 
   # GET /questions/new

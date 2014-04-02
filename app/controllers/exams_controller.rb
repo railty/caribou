@@ -10,6 +10,10 @@ class ExamsController < ApplicationController
   # GET /exams/1
   # GET /exams/1.json
   def show
+		material = 'text'
+		material = params[:material]  if params[:material] != nil
+
+		@questions = @exam.questions.where("material = ?", material)
   end
 
   # GET /exams/new
@@ -62,6 +66,7 @@ class ExamsController < ApplicationController
   end
 	
   def set_active
+		session[:current_exam] = @exam.id
 		respond_to do |format|
 			format.js   {}
 		end
@@ -71,7 +76,6 @@ class ExamsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_exam
       @exam = Exam.find(params[:id])
-			session[:current_exam] = @exam
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20140319123139) do
     t.string   "subject"
     t.string   "question"
     t.string   "answers"
+    t.string   "answer"
+    t.string   "material",   default: "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
