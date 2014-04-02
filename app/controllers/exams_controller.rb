@@ -10,10 +10,14 @@ class ExamsController < ApplicationController
   # GET /exams/1
   # GET /exams/1.json
   def show
-		material = 'text'
+		material = nil
 		material = params[:material]  if params[:material] != nil
+    if material == nil then
+      @questions = @exam.questions.where("material = 'md' or material = 'html'")
+    else
+      @questions = @exam.questions.where("material = ?", material)
+    end
 
-		@questions = @exam.questions.where("material = ?", material)
   end
 
   # GET /exams/new

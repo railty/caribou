@@ -46,7 +46,7 @@ end
 
 gem 'nokogiri', group: :development
 gem 'faker'
-gem 'redcarpet'
+#gem 'redcarpet'
 
 # Use debugger
 gem 'debugger', group: [:development, :test]

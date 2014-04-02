@@ -90,9 +90,11 @@ def import_exams
 	Question.all.each do |q|
 		if q.question =~ /\<script/ then
 			q.material = 'game'
-			q.save
-			puts q.num
-		end
+    else
+			q.material = 'html'
+    end
+    q.save
+    puts q.num
 	end
 	
 end

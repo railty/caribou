@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140319123139) do
     t.string   "question"
     t.string   "answers"
     t.string   "answer"
-    t.string   "material",   default: "text"
+    t.string   "material",   default: "md"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

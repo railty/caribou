@@ -14,16 +14,28 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-		material = 'text'
+		material = nil
 		material = params[:material]  if params[:material] != nil
 		
 		if params[:exam_id] != nil then
 			@exam = Exam.find(params[:exam_id]) 
-			@questions = @exam.questions.where("material = ?", material)
+      if material == nil then
+        @questions = @exam.questions.where("material = 'md' or material = 'html'")
+      else
+        @questions = @exam.questions.where("material = ?", material)
+      end
 		elsif params[:subject] != nil then
-			@questions = Question.where("subject = ? and material = ?", params[:subject], material)
+      if material == nil then
+        @questions = Question.where("subject = ? and (material = 'md' or material = 'html')", params[:subject])
+      else
+        @questions = Question.where("subject = ? and material = ?", params[:subject], material)
+      end
 		else
-			@questions = Question.all.limit(10).where("material = ?", material)
+      if material == nil
+        @questions = Question.where("material = 'md' or material = 'html'").limit(10)
+      else
+        @questions = Question.where("material = ?", material).limit(10)
+      end
 		end
   end
 

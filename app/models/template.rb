@@ -1,7 +1,9 @@
 class Template < ActiveRecord::Base
 	def render
-		#return Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {}).render(ERB.new(self.question).result(binding))
-		return Redcarpet::Markdown.new(Markdown, extensions = {}).render(ERB.new(self.question).result(binding))
+		return ERB.new(self.question).result(binding)
+		
+    #return Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {}).render(ERB.new(self.question).result(binding))
+		#return Redcarpet::Markdown.new(Markdown, extensions = {}).render(ERB.new(self.question).result(binding))
 		
 	end
 	
@@ -32,6 +34,7 @@ class Template < ActiveRecord::Base
 		q.question = self.render
 		q.exam = exam
 		q.subject = self.subject
+    q.material = 'md'
 		q.save
 		return q
 	end
