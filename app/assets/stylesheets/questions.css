@@ -1,8 +1,17 @@
-div#answers 
+.question
 {
-border:1px solid #a1a1a1;
-padding:10px 10px; 
-background:lightgreen;
-width:300px;
-border-radius:5px;
+	border:1px solid darkgreen;
+	padding:5px; 
+	background:lightgreen;
+	width:600px;
+	border-radius:5px;
+}
+
+.answer
+{
+	border:1px solid darkgreen;
+	padding:5px; 
+	background:lightpink;
+	width:600px;
+	border-radius:5px;
 }

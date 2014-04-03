@@ -1,2 +1,4 @@
 t = Template.first
-puts t.render
+e = Exam.where("name='exam1'").first
+puts e.questions.length
+t.append(e)

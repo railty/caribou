@@ -41,8 +41,9 @@ angular.module('templateApp.controllers', [])
 	};
 	
 	$scope.check = function(){
-		console.log($('input[name=answers]:checked', 'ol').val());
-		$scope.template.$check({});
+		var answer = $('input[name=answers]:checked', 'ol').val();
+		console.log(answer);
+		$scope.template.$check({answer:answer});
 	};
 }]);
 

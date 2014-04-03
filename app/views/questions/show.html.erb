@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<div class="question"><%= @question.question.html_safe %></div>
+<div class="question <%=@question.material%>"><%= @question.question.html_safe %></div>
+<%= button_to 'Check', {controller:'questions', action: "check", id: @question.id, answer: 999}, :remote=>true, :onClick=>"checkAnswer();", 'data-no-turbolink'=>true %> |
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
+
+<script>
+$(document).ready(function() {
+	renderQuestion($(".question.md"));
+});
+</script>

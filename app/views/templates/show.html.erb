@@ -2,7 +2,8 @@
 
 <div ng-app="templateApp">
 	<div ng-controller="templateCtrl" ng-init="init(<%=@template.id%>)">
-		<div id='question' ng-bind-html="template.md | toHtml "></div>
+		<div id='question' ng-bind-html="template.md | toHtml"></div>
+		{{template.answer}}
 		<button id='submit' ng-click='check();'>Check</button>
 		<br/><label>{{status}}</label>
 	</div>

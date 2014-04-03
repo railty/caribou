@@ -8,7 +8,8 @@ angular.module('templateApp.factories', [])
       id: '@id'
     }, {
       update: {method:'PUT'},
-			check: {method:'GET', url:'/templates/check/:id', params:{xyz:123}}
+			check: {method:'GET', url:'/templates/check/:id'}
+			//check: {method:'GET', url:'/templates/check/:id', params:{answer:123}}
     });
   }
 ]);

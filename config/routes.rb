@@ -12,6 +12,9 @@ Caribou::Application.routes.draw do
 		collection do
 			get 'subjects'
 		end
+		member do
+			post 'check'
+		end
 	end
 	
 	resources :exams do

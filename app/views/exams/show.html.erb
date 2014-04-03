@@ -1,8 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <%@questions.each do |question|%>
-	<div class="question"><%= question.question.html_safe %></div>
+	<%= form_for(:question, {url: check_question_path(question, :answer=>999), :remote=>true, :html=>{:id=>question.id, :onSubmit2=>"return checkAnswer(this);"}}) do |f| %>
+		<div class="question <%=question.material%>"><%= question.question.html_safe %></div>
+		<div class="answer">!</div>
+		<%=f.submit "Check", :onConfirm=>"alert('s');"%>		
+	<%end%>
 <%end%>
-	
 <%= link_to 'Edit', edit_exam_path(@exam) %> |
 <%= link_to 'Back', exams_path %>
+
+<script>
+
+function checkAnswer(form){
+return false;
+	var answer = $('input[name=answers]:checked', 'ol').val();
+	if (typeof answer == "undefined"){
+		alert("select an answer");
+		event.preventDefault();
+		return false;
+	}
+	else{
+		console.log('checking...' + answer);
+		var url = $(form).prop("action");
+		url = url.replace(/answer=([^\&]*)/, 'answer='+answer);
+		$(form).prop("action", url);
+	}
+}
+
+$(document).ready(function() {
+	renderQuestion($(".question.md"));
+		
+//	$('form').submit(function(e){
+	//	checkAnswer($(this));
+	//});
+		
+});
+</script>
