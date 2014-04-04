@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <%@questions.each do |question|%>
-	<%= form_for(:question, {url: check_question_path(question, :answer=>999), :remote=>true, :html=>{:id=>question.id, :onSubmit2=>"return checkAnswer(this);"}}) do |f| %>
+	<%= form_for(:question, {url: check_question_path(question, :answer=>999), :remote=>true, :html=>{:id=>question.id}}) do |f| %>
 		<div class="question <%=question.material%>"><%= question.question.html_safe %></div>
 		<div class="answer">!</div>
-		<%=f.submit "Check", :onConfirm=>"alert('s');"%>		
+		<%=f.submit "Check"%>		
 	<%end%>
 <%end%>
 <%= link_to 'Edit', edit_exam_path(@exam) %> |
@@ -13,11 +13,9 @@
 <script>
 
 function checkAnswer(form){
-return false;
-	var answer = $('input[name=answers]:checked', 'ol').val();
+	var answer = $('input[name=answers]:checked', form).val();
 	if (typeof answer == "undefined"){
-		alert("select an answer");
-		event.preventDefault();
+		alert("please select an answer");
 		return false;
 	}
 	else{
@@ -31,9 +29,10 @@ return false;
 $(document).ready(function() {
 	renderQuestion($(".question.md"));
 		
-//	$('form').submit(function(e){
-	//	checkAnswer($(this));
-	//});
+	$(":submit").click(function(e){
+		var form = $(this).parents('form:first');
+		return checkAnswer(form);
+	})
 		
 });
 </script>
