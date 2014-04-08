@@ -1,0 +1,2 @@
+#!/bin/bash -l
+cd `dirname $0` && passenger start --address 127.0.0.1 --port 4000 --environment production
