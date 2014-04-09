@@ -3,7 +3,8 @@
 
 set :application, 'caribou'
 set :deploy_user, 'sning'
-set :repo_url, 'https://github.com/railty/caribou.git'
+#set :repo_url, 'https://github.com/railty/caribou.git'
+set :repo_url, 'file:///home/sning/git/caribou'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
