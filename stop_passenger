@@ -1,2 +1,0 @@
-#!/bin/bash -l
-cd `dirname $0` && passenger stop --port 4000
