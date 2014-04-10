@@ -4,3 +4,6 @@ function renderQuestion(selector){
 	});
 }
 
+$(document).ready(function(){
+    $("#tooltip").tooltip();
+});

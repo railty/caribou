@@ -2,9 +2,12 @@
 
 <%@questions.each do |question|%>
 	<%= form_for(:question, {url: check_question_path(question, :answer=>999), :remote=>true, :html=>{:id=>question.id}}) do |f| %>
-		<div class="question <%=question.material%>"><%= question.question.html_safe %></div>
-		<div class="answer">!</div>
-		<%=f.submit "Check"%>		
+		<div class="panel panel-primary">
+			<div class="panel-heading"> title</div>
+			<div class="panel-body question <%=question.material%>"><%= question.question.html_safe %></div>
+			<%=f.submit "Check", :class=>'btn btn-primary' %>		
+			<div class="answer panel-footer">!</div>
+		</div>
 	<%end%>
 <%end%>
 <%= link_to 'Edit', edit_exam_path(@exam) %> |
@@ -15,7 +18,7 @@
 function checkAnswer(form){
 	var answer = $('input[name=answers]:checked', form).val();
 	if (typeof answer == "undefined"){
-		alert("please select an answer");
+		$(".answer").text("Please select an answer");
 		return false;
 	}
 	else{

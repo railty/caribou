@@ -95,7 +95,7 @@ class QuestionsController < ApplicationController
 	
   def check
 		answer = params[:answer]
-		@correct = @question.answer == answer ? 'correct' : 'wrong'
+		@correct = @question.answer == answer ? 'Correct' : 'Wrong'
 		respond_to do |format|
 			format.js   {}
 		end

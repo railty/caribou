@@ -1,4 +1,10 @@
-<h1 id='title' >Listing exams 11</h1>
+<h1 id='title' >Listing exams</h1>
+
+<%= button_tag(type: 'button', class: 'btn btn-default btn-lg' ) do %>
+  Star <%= content_tag(:span, '', class: 'glyphicon glyphicon-star') %>
+<% end %>
+
+<%= button_tag('Tooltip on the right', type: 'button', class: 'btn btn-default', id: 'tooltip', data: {toggle: 'tooltip', placement: 'right'}, :'data-original-title' => 'Tooltip on the right' )%>
 
 <table>
   <thead>
