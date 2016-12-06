@@ -40,7 +40,7 @@ end
 gem 'unicorn'
 
 group :development do
-  gem 'capistrano', '~> 3.0.1'
+  gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
 end
