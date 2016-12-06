@@ -1,10 +1,12 @@
 # config valid only for Capistrano 3.1
-#lock '3.1.0'
+lock '3.4.0'
 
 set :application, 'caribou'
 set :repo_url, 'https://github.com/railty/caribou.git'
-set :deploy_user, 'sning'
-set :deploy_to, "/home/#{fetch(:deploy_user)}/public_html/#{fetch(:application)}"
+set :rbenv_path, '/home/sning/.rbenv/'
+set :rbenv_ruby, '2.2.2'
+
+set :deploy_to, "/home/sning/public_html/caribou"
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -33,12 +35,7 @@ set :linked_dirs, %w{log tmp}
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-
-set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.2.2'
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
-set :rbenv_roles, :all # default value
+set :passenger_restart_with_touch, true
 
 namespace :deploy do
 
