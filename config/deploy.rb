@@ -2,9 +2,9 @@
 #lock '3.1.0'
 
 set :application, 'caribou'
+set :repo_url, 'https://github.com/railty/caribou.git'
 set :deploy_user, 'sning'
-#set :repo_url, 'https://github.com/railty/caribou.git'
-set :repo_url, 'file:///home/sning/git/caribou'
+set :deploy_to, "/home/#{fetch(:deploy_user)}/public_html/#{fetch(:application)}"
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -35,7 +35,7 @@ set :linked_dirs, %w{log tmp}
 
 
 set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.1.1'
+set :rbenv_ruby, '2.2.2'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
@@ -50,4 +50,3 @@ namespace :deploy do
   end
 	#after :publishing, :restart
 end
-

@@ -49,5 +49,4 @@ gem 'faker'
 #gem 'redcarpet'
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
-
+gem 'byebug', group: [:development, :test]
