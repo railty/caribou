@@ -2,8 +2,12 @@
 {
 	background:lightgreen;
 	line-height: 28px;
+	font-size: 22px;
 }
 
+.question ol{
+	font-size: 22px;
+}
 .answer
 {
 	background:lightpink;
